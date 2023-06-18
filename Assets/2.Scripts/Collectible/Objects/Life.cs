@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Life : Collectible, IEffect
 {
-    [DoNotSerialize] public GameObject Effect => effect;
-
-    private float timeDestroySelf = 1; 
+    private float timeDestroySelf = 1f; 
 
     [SerializeField] GameObject effect; 
 
@@ -19,7 +17,7 @@ public class Life : Collectible, IEffect
 
     private void Start()
     {
-        Destroy(gameObject, timeDestroySelf);
+        Destroy(this, timeDestroySelf);
     }
 
     public void Execute()

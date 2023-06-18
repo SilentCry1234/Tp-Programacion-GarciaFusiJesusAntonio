@@ -6,7 +6,7 @@ public class Coin : Collectible, ISound
 
     [SerializeField] AudioSource coinSound;
 
-    private float timeDestroySelf = 1;
+    private float timeDestroySelf = 1f;
      
     private void Awake()
     {

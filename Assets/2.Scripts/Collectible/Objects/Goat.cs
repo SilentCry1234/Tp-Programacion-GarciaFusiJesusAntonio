@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Goat : Collectible, ISound, IEffect
 {
-    [SerializeField] private GameObject effect; 
+    public AudioSource GoatSound => goatSound; 
 
-    private AudioSource goatSound;
+    [SerializeField] private GameObject effect;
+    [SerializeField] private AudioSource goatSound;
 
-    private float timeDestroySelf = 1; 
+    private float timeDestroySelf = 1f; 
 
     private void Awake()
     {
@@ -17,12 +18,12 @@ public class Goat : Collectible, ISound, IEffect
 
     private void Start()
     {
-        Destroy(gameObject, timeDestroySelf);
+        Destroy(this, timeDestroySelf);
     }
 
     public void Execute()
     {
-        effect.SetActive(true); 
+        Instantiate(effect, transform.position, Quaternion.identity); 
     }
 
     public void MakeSound(AudioSource sound)

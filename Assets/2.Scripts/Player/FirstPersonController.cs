@@ -6,6 +6,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
     [SerializeField] private Transform ground;
+    [SerializeField] private Transform orientation; 
     [SerializeField] LayerMask groundMask;
 
     private MyInputs controls;
@@ -49,7 +50,7 @@ public class FirstPersonController : MonoBehaviour
     {
         move = controls.Player.Move.ReadValue<Vector2>();
 
-        _moveDirection = new Vector3(move.x, 0, move.y); 
+        _moveDirection = orientation.forward * move.y + orientation.right * move.x;
 
         rb.MovePosition(rb.position + Time.deltaTime * moveSpeed * _moveDirection);
     }
