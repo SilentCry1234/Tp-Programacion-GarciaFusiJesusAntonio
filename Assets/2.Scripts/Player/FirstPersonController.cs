@@ -9,14 +9,13 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] LayerMask groundMask;
 
     private MyInputs controls;
-    private Vector3 velocity;
-    private float gravity = -9.81f;
     private Vector2 move;
+    private Vector3 _moveDirection;
 
     private float distanceToGround = 0.4f; 
     private bool isGrounded;
 
-    private CharacterController chController;
+    private Rigidbody rb;
 
     private void OnEnable()
     {
@@ -30,43 +29,38 @@ public class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
-        chController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         controls = new MyInputs();
+
+        rb.freezeRotation = true;
     }
 
     void Update()
     {
-        Gravity();
-        Movement();
         Jump();
     }
 
-    private void Gravity()
+    private void FixedUpdate()
     {
-        isGrounded = Physics.CheckSphere(ground.position, distanceToGround, groundMask); 
-
-        if(isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-
-        velocity.y += gravity * Time.deltaTime;   
-        chController.Move(velocity * Time.deltaTime);
+        Movement();
     }
 
     private void Movement()
     {
-        move = controls.Player.Move.ReadValue<Vector2>(); 
+        move = controls.Player.Move.ReadValue<Vector2>();
 
-        Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
-        chController.Move(movement * moveSpeed * Time.deltaTime);
+        _moveDirection = new Vector3(move.x, 0, move.y); 
+
+        rb.MovePosition(rb.position + Time.deltaTime * moveSpeed * _moveDirection);
     }
 
     private void Jump()
     {
-        if(controls.Player.Jump.triggered && isGrounded)
+        isGrounded = Physics.CheckSphere(ground.position, distanceToGround, groundMask);
+
+        if (controls.Player.Jump.triggered && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity); 
+            rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
         }
     }
 }
