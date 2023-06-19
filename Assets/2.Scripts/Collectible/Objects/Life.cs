@@ -2,15 +2,17 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Life : Collectible, IEffect
+public class Life : Collectible, IEffect/*, IGiveLife*/
 {
     private float timeDestroySelf = 1f; 
 
-    [SerializeField] GameObject effect; 
+    [SerializeField] GameObject effect;
+
+    //int IGiveLife.LifeToGive => lifeToGive;
 
     private void Awake()
     {
-        lifeToGive = 20;
+        lifeToGive = 50;
 
         effect.SetActive(false);
     }
@@ -24,4 +26,9 @@ public class Life : Collectible, IEffect
     {
         effect.SetActive(true);
     }
+
+    //public void GiveLife()
+    //{
+    //    Debug.Log(lifeToGive);
+    //}
 }

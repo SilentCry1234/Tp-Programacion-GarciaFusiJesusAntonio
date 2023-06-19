@@ -6,21 +6,13 @@ public class Coin : Collectible, ISound
 
     [SerializeField] AudioSource coinSound;
 
-    private float timeDestroySelf = 1f;
-     
     private void Awake()
     {
-        pointsToGive = 10; 
-    }
-
-    private void Start()
-    {
-        Destroy(gameObject, timeDestroySelf);
+        pointsToGive = 10;
     }
 
     public void MakeSound(AudioSource sound)
     {
         sound.Play();
     }
-    
 }

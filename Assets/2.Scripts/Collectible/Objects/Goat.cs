@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class Goat : Collectible, ISound, IEffect
+public class Goat : Collectible, ISound, IEffect/*, IGiveLife*/
 {
-    public AudioSource GoatSound => goatSound; 
+    public AudioSource GoatSound => goatSound;
+
+    //int IGiveLife.LifeToGive => lifeToGive;
 
     [SerializeField] private GameObject effect;
     [SerializeField] private AudioSource goatSound;
@@ -11,7 +13,7 @@ public class Goat : Collectible, ISound, IEffect
 
     private void Awake()
     {
-        lifeToGive = 50;
+        lifeToGive = 20; 
 
         effect.SetActive(false);
     }
@@ -30,4 +32,9 @@ public class Goat : Collectible, ISound, IEffect
     {
         sound.Play();
     }
+
+    //public void GiveLife()
+    //{
+    //    Debug.Log(lifeToGive + "Soy Cabra"); 
+    //}
 }

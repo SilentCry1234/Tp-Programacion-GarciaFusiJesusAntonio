@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,33 +9,31 @@ public class Player : MonoBehaviour
     private int score;
     private int health;
 
-    private Coin coin;
-    private Goat goat;
-    private Life life;
+    private Collectible pickCurrentCollectible;
 
-    private Collectible pickCurrentCollectible; 
-
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I Hit " + other.collider.name);
+        Debug.Log("Me estoy activando"); 
 
-        if(other.gameObject.CompareTag("PickObject"))
+        if (other.gameObject.CompareTag("PickObject"))
         {
-            if(other.gameObject.TryGetComponent<Collectible>(out var collectible))
+            if (other.TryGetComponent<Collectible>(out var collectible))
             {
                 pickCurrentCollectible = collectible;
 
-                Collect(pickCurrentCollectible); 
+                //collectible.GiveLife();
+
+                StartCoroutine(SumValuesandDestroyObjects());
             }
         }
     }
 
     private void Collect(Collectible go)
     {
-        Debug.Log("I'm being call"); 
+        //Debug.Log(go.LifeToGive);
 
-        ScoreSum(go.PointToGive);
-        HealthSum(go.LifeToGive);
+        ScoreSum(go.LifeToGive);
+        HealthSum(go.PointToGive);
     }
 
     private void ScoreSum(int points)
@@ -47,5 +46,19 @@ public class Player : MonoBehaviour
     {
         health += hearts;
         Debug.Log("Me Cure " + health); 
+    }
+
+    private void DoSound(AudioSource sound)
+    {
+        sound.Play();
+    }
+
+    IEnumerator SumValuesandDestroyObjects()
+    {
+        Collect(pickCurrentCollectible);
+
+        yield return new WaitForSeconds(3f);
+
+        Destroy(pickCurrentCollectible.gameObject);
     }
 }

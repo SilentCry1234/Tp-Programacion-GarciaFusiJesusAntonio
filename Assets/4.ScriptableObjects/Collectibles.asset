@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectibleList:
   - {fileID: 2575614315945611055, guid: 330b1413ea290cb4b93609b0c8707ea6, type: 3}
-  - {fileID: 1686706471160873827, guid: ed024e918aa8b6745929c13122fc819b, type: 3}
   - {fileID: 4956558106293151216, guid: 902cd1b5f2e486e4990c8f90025e1752, type: 3}
+  - {fileID: 1686706471160873827, guid: ed024e918aa8b6745929c13122fc819b, type: 3}

@@ -15,19 +15,19 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "d144a6b5-2527-4469-8b3b-4264d033060e",
-                    "expectedControlType": "Button",
+                    "name": "Look",
+                    "type": "PassThrough",
+                    "id": "cd3f3e12-2ac0-4791-990a-6a1efe06dc9c",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Look",
-                    "type": "PassThrough",
-                    "id": "cd3f3e12-2ac0-4791-990a-6a1efe06dc9c",
-                    "expectedControlType": "Vector2",
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "d144a6b5-2527-4469-8b3b-4264d033060e",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
