@@ -9,8 +9,6 @@ public class Goat : Collectible, ISound, IEffect/*, IGiveLife*/
     [SerializeField] private GameObject effect;
     [SerializeField] private AudioSource goatSound;
 
-    private float timeDestroySelf = 1f; 
-
     private void Awake()
     {
         effect.SetActive(false);
@@ -21,8 +19,6 @@ public class Goat : Collectible, ISound, IEffect/*, IGiveLife*/
         lifeToGive = 20;
 
         Debug.Log("Vida Goat: " +  lifeToGive);
-
-        //Destroy(this, timeDestroySelf);
     }
 
     public void Execute()

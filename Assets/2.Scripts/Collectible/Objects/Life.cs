@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class Life : Collectible, IEffect/*, IGiveLife*/
 {
-    private float timeDestroySelf = 1f; 
-
     [SerializeField] GameObject effect;
-
-    //int IGiveLife.LifeToGive => lifeToGive;
 
     private void Awake()
     {
@@ -18,8 +14,6 @@ public class Life : Collectible, IEffect/*, IGiveLife*/
         lifeToGive = 50;
 
         Debug.Log("Vida Life: " + lifeToGive);
-
-        //Destroy(this, timeDestroySelf);
     }
 
     public void Execute()

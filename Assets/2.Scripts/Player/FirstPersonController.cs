@@ -5,8 +5,8 @@ public class FirstPersonController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpHeight;
-    [SerializeField] private Transform ground;
     [SerializeField] private Transform orientation; 
+    [SerializeField] private Transform ground;
     [SerializeField] LayerMask groundMask;
 
     private MyInputs controls;

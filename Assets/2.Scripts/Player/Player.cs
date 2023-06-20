@@ -16,14 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     Life life; 
 
-    private float timerCounter; 
-
     private Collectible pickCurrentCollectible;
-
-    private void Update()
-    {
-        timerCounter = Time.deltaTime;   
-    }
 
     private void OnTriggerEnter(Collider other)
     {
