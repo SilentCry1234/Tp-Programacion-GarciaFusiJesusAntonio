@@ -9,31 +9,46 @@ public class Player : MonoBehaviour
     private int score;
     private int health;
 
+    [SerializeField]
+    Coin coin;
+    [SerializeField]
+    Goat goat;
+    [SerializeField]
+    Life life; 
+
+    private float timerCounter; 
+
     private Collectible pickCurrentCollectible;
+
+    private void Update()
+    {
+        timerCounter = Time.deltaTime;   
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Me estoy activando"); 
-
         if (other.gameObject.CompareTag("PickObject"))
         {
             if (other.TryGetComponent<Collectible>(out var collectible))
             {
+                //Debug.Log("Estoy agarrando el objeto");
                 pickCurrentCollectible = collectible;
 
-                //collectible.GiveLife();
-
-                StartCoroutine(SumValuesandDestroyObjects());
+                StartCoroutine(SumValuesandDestroyObjects()); 
             }
         }
     }
 
     private void Collect(Collectible go)
     {
-        //Debug.Log(go.LifeToGive);
+        ScoreSum(go.PointToGive);
+        HealthSum(go.LifeToGive);
 
-        ScoreSum(go.LifeToGive);
-        HealthSum(go.PointToGive);
+        DoSoundCoin(coin.CoinSound);
+
+        LifeEffect();
+
+        GoatEffectandSoun(goat.GoatSound); 
     }
 
     private void ScoreSum(int points)
@@ -48,16 +63,27 @@ public class Player : MonoBehaviour
         Debug.Log("Me Cure " + health); 
     }
 
-    private void DoSound(AudioSource sound)
+    private void DoSoundCoin(AudioSource sound)
     {
-        sound.Play();
+        coin.MakeSound(sound);
+    }
+
+    private void LifeEffect()
+    {
+        life.Execute();
+    }
+
+    private void GoatEffectandSoun(AudioSource sound)
+    {
+        goat.MakeSound(sound);
+        goat.Execute();
     }
 
     IEnumerator SumValuesandDestroyObjects()
     {
         Collect(pickCurrentCollectible);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         Destroy(pickCurrentCollectible.gameObject);
     }

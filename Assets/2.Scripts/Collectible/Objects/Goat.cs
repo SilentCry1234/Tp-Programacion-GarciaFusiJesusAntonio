@@ -13,14 +13,16 @@ public class Goat : Collectible, ISound, IEffect/*, IGiveLife*/
 
     private void Awake()
     {
-        lifeToGive = 20; 
-
         effect.SetActive(false);
     }
 
     private void Start()
     {
-        Destroy(this, timeDestroySelf);
+        lifeToGive = 20;
+
+        Debug.Log("Vida Goat: " +  lifeToGive);
+
+        //Destroy(this, timeDestroySelf);
     }
 
     public void Execute()

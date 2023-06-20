@@ -16,7 +16,7 @@ public class UiManager : MonoBehaviour
     private void Update()
     {
         ShowScore();
-        ShowHealt();
+        ShowHealth();
     }
 
     private void FindPlayer()
@@ -29,7 +29,7 @@ public class UiManager : MonoBehaviour
         scoreText.text = player.Score.ToString();
     }
 
-    private void ShowHealt()
+    private void ShowHealth()
     {
         healthText.text = player.Health.ToString();
     }

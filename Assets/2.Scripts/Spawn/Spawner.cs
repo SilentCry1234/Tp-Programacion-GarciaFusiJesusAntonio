@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
             int randomIndex = Random.Range(0, spawns.Length);
             Vector3 randomLocation = spawns[randomIndex].position;
 
-            Instantiate(collectibles.CollectibleList[i], randomLocation, Quaternion.identity);;
+            Instantiate(collectibles.CollectibleList[i], randomLocation, Quaternion.identity);
         }
     }
 }

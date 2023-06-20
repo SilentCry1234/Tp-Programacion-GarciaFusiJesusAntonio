@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Life : Collectible, IEffect/*, IGiveLife*/
@@ -12,14 +10,16 @@ public class Life : Collectible, IEffect/*, IGiveLife*/
 
     private void Awake()
     {
-        lifeToGive = 50;
-
         effect.SetActive(false);
     }
 
     private void Start()
     {
-        Destroy(this, timeDestroySelf);
+        lifeToGive = 50;
+
+        Debug.Log("Vida Life: " + lifeToGive);
+
+        //Destroy(this, timeDestroySelf);
     }
 
     public void Execute()
